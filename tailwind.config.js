@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}", "./node_modules/flowbite/**/*.js"],
+  content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
     },
-    backgroundColor: {
+    colors: {
       'redHeader': {
         '50': '#fef3f2',
         '100': '#ffe2e1',
@@ -30,8 +30,8 @@ module.exports = {
         '800': '#676767',
         '900': '#545454',
         '950': '#363636',
-    },
-    
+      },
+      'custom-pink': '#9e004a',
     }
   },
   plugins: [
