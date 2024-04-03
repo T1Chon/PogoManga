@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ProductResults, product } from '../interfaces/card';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class ServicesService {
 
 
   constructor(private http: HttpClient) { };
-
-  GetProducts():Observable<any> {
-    return this.http.get(this.urlLocal)
+  
+  GetProducts():Observable<ProductResults> {
+    return this.http.get<ProductResults>(this.urlLocal);
   }
 }

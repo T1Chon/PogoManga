@@ -1,5 +1,13 @@
-export interface content {
-    img: string;
+export interface product {
     nombre: string;
-    price: number;
+    precio: number;
+    tamano: string;
+    stock: number;
+    categoria: string;
+    Segunda_mano: number;
+    img: string;
+}
+
+export interface ProductResults {
+    productos: product[]
 }
