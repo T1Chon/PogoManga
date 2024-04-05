@@ -1,4 +1,5 @@
 export interface product {
+    id_producto: number;
     nombre: string;
     precio: number;
     tamano: string;

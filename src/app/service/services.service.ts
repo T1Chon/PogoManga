@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductResults, product } from '../interfaces/card';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,10 @@ export class ServicesService {
   GetProducts():Observable<ProductResults> {
     return this.http.get<ProductResults>(this.urlLocal);
   }
+
+  GetProductById(productId: number): Observable<ProductResults> {
+    return this.http.get<ProductResults>(`${this.urlLocal}/${productId}`);
+  }
+
+  
 }
