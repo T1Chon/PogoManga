@@ -10,3 +10,14 @@
         height: 100%;
     }
 }
+
+* {
+    --scrollbarBG: transparent;
+    --thumbBG: #dc2626;
+
+    scrollbar-width: none;
+    /* scrollbar-color: var(--thumbBG) var(--scrollbarBG); */
+}
+
+
+
