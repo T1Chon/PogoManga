@@ -6,7 +6,6 @@
 
             <div class="col-span-2 bg-redHeader-500">
                 <div class="flex-col text-center justify-center pt-3">
-
                 </div>
             </div>
             <div class="col-span-10 p-10 bg-redHeader-300">
@@ -16,36 +15,37 @@
                             <p>
                                 Usuario
                                 <input type="text" name="User" id="user" cols="15" rows="1" maxlength="15"
-                                    class="rounded-end-3 ml-3">
+                                    class="rounded-end-3 ml-3" [(ngModel)]="registerObj.usuario">
                             </p>
                         </label>
                         <label for="name" class="flex  justify-end ">
                             <p> Nombre
                             <input type="text" name="name" id="psw" cols="15" rows="1" maxlength="15"
-                                placeholder="" class="rounded-end-3 ml-3">
+                                placeholder="" class="rounded-end-3 ml-3" [(ngModel)]="registerObj.nombre"> 
                             </p>
                         </label>
                         <label for="firstname" class="flex  justify-end">
                             <p> Primer Apellido
                             <input type="text" name="firstname" id="psw" cols="15" rows="1" maxlength="15"
-                                placeholder="" class="rounded-end-3 ml-3">
+                                placeholder="" class="rounded-end-3 ml-3" [(ngModel)]="registerObj.apellido1">
                             </p>
                         </label>
                         <label for="secondname" class="flex justify-end">
                             <p> Segundo Apellido
                             <input type="text" name="secondname" id="psw" cols="15" rows="1" maxlength="15"
-                                placeholder="" class="rounded-end-3 ml-3">
+                                placeholder="" class="rounded-end-3 ml-3" [(ngModel)]="registerObj.apellido2">
                             </p>
                         </label>
                         <label for="password" class="flex  justify-end">
                             <p> Contraseña
                             <input type="password" name="password" id="psw" cols="15" rows="1" maxlength="15"
-                                placeholder="" class="rounded-end-3 ml-3">
+                                placeholder="" class="rounded-end-3 ml-3" [(ngModel)]="registerObj.contrasena">
                             </p>
                         </label>
                         <label for="button" class="flex justify-center ">
                             <button
-                                class="transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink">Login</button>
+                                class="transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink"
+                                type="submit" (click)="onRegister()">Register</button>
                         </label>
                         <label>
                             <!-- <div class="">
