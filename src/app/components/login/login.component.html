@@ -11,7 +11,7 @@
         <label for="password" class="flex justify-center items-start flex-col">
             <h2 class="text-sm">Contraseña</h2>
             <input class="w-full" type="password" name="Contraseña" id="psw" cols="15" rows="1" maxlength="15" placeholder=""
-                 required [(ngModel)]="loginObj.contrasena">
+                 required [(ngModel)]="loginObj.contrasena"> 
 
         </label>
         <label for="button" class="flex justify-center pt-4">
@@ -20,19 +20,9 @@
                 type="submit" (click)="onLogin()">Inicia sesión</button>
         </label>
 
-        <p class="mt-5 text-center">No tienes cuenta todavia? <span class="font-semibold cursor-pointer" [routerLink]="['/register']">Registrate</span></p>
+        
         <label>
-            <!-- <div class="">
-            <div id="g_id_onload"
-                data-client_id="31992607121-23bba5v4cm48mb7eqvhm5hjn3hleavbi.apps.googleusercontent.com"
-                data-context="signup" data-ux_mode="redirect"
-                data-login_uri="http://pogomangaapi.com:3001/auth/google" data-auto_prompt="false">
-            </div>
-
-            <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
-                data-text="signin_with" data-size="large" data-logo_alignment="left">
-            </div>
-            </div> -->
+            <p class="mt-5 text-center">No tienes cuenta todavia? <span class="font-semibold cursor-pointer" [routerLink]="['/register']">Registrate</span></p>
         </label>
     </form>
 </div>
