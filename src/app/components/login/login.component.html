@@ -12,15 +12,14 @@
             <h2 class="text-sm">Contraseña</h2>
             <input class="w-full" type="password" name="Contraseña" id="psw" cols="15" rows="1" maxlength="15" placeholder=""
                  required [(ngModel)]="loginObj.contrasena"> 
-
         </label>
         <label for="button" class="flex justify-center pt-4">
             <button
                 class="w-full transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink"
                 type="submit" (click)="onLogin()">Inicia sesión</button>
+                @if (loginAuth() == true) {    
+                }
         </label>
-
-        
         <label>
             <p class="mt-5 text-center">No tienes cuenta todavia? <span class="font-semibold cursor-pointer" [routerLink]="['/register']">Registrate</span></p>
         </label>
