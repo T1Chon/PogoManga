@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card',
-  standalone: true,
+  standalone: true, 
   imports: [AsyncPipe, CardInfoComponent, RouterLink],
   providers: [ServicesService],
   templateUrl: './card.component.html',
