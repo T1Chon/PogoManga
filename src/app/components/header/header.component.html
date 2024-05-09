@@ -40,8 +40,14 @@
     @else { <div class="text-white flex items-center gap-3 cursor-pointer" [routerLink]="['/login']">
         <img src="../../../assets/images/perfil.png" class="w-12 h-12">Iniciar sesión
     </div>}
-    <div class="w-12 h-12 mr-5">
-        <a href="#"><img src="../../../assets/images/carrito.png"></a>
-    </div>
+          <div class="w-12 h-12" (click)="showBox()">
+        <i class="fa fa-shopping-cart"></i> <img src="../../../assets/images/carrito.png">
+      </div>
+  </div>
+</div>
+<div >
+  @if (!isHidden) {<app-carrito-box  class="flex justify-end mr-10" ></app-carrito-box>}
+</div>
 
 </div>
+
