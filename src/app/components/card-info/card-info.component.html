@@ -1,0 +1,10 @@
+<div class="flex flex-col justify-center items-center">
+    <img class="w-[80%] h-[60%] shadow-lg rounded-xl" [routerLink]="['/productdetail', cardInfo.id_producto]" src="{{ cardInfo.img }}-1.jpg">
+    <h2 class="text-xl font-semibold mt-3 mb-2" [routerLink]="['/productdetail', cardInfo.id_producto]">{{ cardInfo.nombre }}</h2>
+    <h2 class="text-xl font-semibold mb-2">{{ cardInfo.precio }}</h2>
+    <button
+        class="transition ease duration-300 text-white border-1 rounded-2xl 
+        p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink">
+        Añadir al carrito</button>
+    <h2 class="hidden">{{ cardInfo.id_producto}}</h2>
+</div>
