@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CardInfoComponent } from '../card-info/card-info.component';
 import { RouterLink } from '@angular/router';
-;
+
 
 
 @Component({

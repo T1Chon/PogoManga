@@ -1,10 +1,12 @@
 // login info: https://www.bacancytechnology.com/qanda/angular/session-storage-in-angular-application#:~:text=To%20store%20the%20data%20in,can%20use%20the%20setItem%20method.
 
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { initFlowbite } from 'flowbite';
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -17,9 +19,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginObj: Login;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
     this.loginObj = new Login();
   }
+
+
+  
 
   async onLogin() {
 

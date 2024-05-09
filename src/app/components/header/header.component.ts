@@ -33,8 +33,7 @@ export class HeaderComponent implements OnInit {
     // Eliminar la información del usuario de sessionStorage
     sessionStorage.removeItem('user');
     // Redirigir al usuario a la página de inicio de sesión o a la página principal
-    this.router.navigate(['/login']); // Ahora this.router está definido y puedes usarlo
-    location.reload();
+    this.router.navigate(['/main']); // Ahora this.router está definido y puedes usarlo
     
  }
 
