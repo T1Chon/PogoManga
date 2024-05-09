@@ -10,13 +10,10 @@ import { LoginComponent } from './components/login/login.component';
 
 export const  routes: Routes = [
     {
-        path: 'main',
-        component: MainComponent, 
+        path: 'main', component: MainComponent, 
     },
     {//Other route that no exist
-        path: '',
-        redirectTo: '/main',
-        pathMatch: 'full'
+        path: '', redirectTo: '/main', pathMatch: 'full'
     },
     {
         path: 'productdetail/:id', component: ProductDetailComponent
@@ -28,11 +25,9 @@ export const  routes: Routes = [
         path: 'contact', component: ContactComponent
     },
     {
-        path: 'login',
-        component: LoginComponent,
+        path: 'login', component: LoginComponent,
     },
-    {//Redirect to register
-        path: 'register',
-        component: RegisterComponent
+    {
+        path: 'register', component: RegisterComponent
     }
 ];
