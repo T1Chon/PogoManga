@@ -1,21 +1,26 @@
 <div class="flex justify-between items-center flex-wrap bg-redHeader-500 min-h-[16vh] p-4" id="header">
-    <a href="#"><img src="../../../assets/images/pogomanga-logo.png" id="img-logo" class="h-30"></a>
-    <input type="text" id="buscador" placeholder="Buscar..." class="bg-white bg-opacity-70 h-10 px-4 flex-1 mr-8 ml-3 bg-no-repeat bg-right" style="background-image: url('../../../assets/images/lupa-search.png')">
-    <div class="flex justify-center gap-12 mr-10 w-[19%]">
-        <div class="flex items-center gap-2">
-            <div class="text-white flex items-center gap-3 cursor-pointer" [routerLink]="['/login']">
-                <img src="../../../assets/images/perfil.png" class="w-12 h-12">
-            @if(userInfo){
-                {{ userInfo.usuario }}
-            } @else{iniciar sesion}</div>
-        </div>
-            
-        @if (userInfo) {
-        <button class="relative inline-flex items-center justify-center p-3 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-2xl  bg-gray-900 hover:bg-black" (click)="onLogout()">Logout
-        </button>
-        }
-        <div class="w-12 h-12">
-            <a href="#"><img src="../../../assets/images/carrito.png"></a>
-        </div>
-    </div>
+  <a href="#"><img src="../../../assets/images/pogomanga-logo.png" id="img-logo" class="h-30"></a>
+  <input type="text" id="buscador" placeholder="Buscar..." class="bg-white bg-opacity-70 h-10 px-4 flex-1 mr-8 ml-3 bg-no-repeat bg-right" style="background-image: url('../../../assets/images/lupa-search.png')">
+  <div class="flex justify-center gap-12 mr-10 w-[19%]">
+      <div class="flex items-center gap-2">
+          <div class="text-white flex items-center gap-3 cursor-pointer" [routerLink]="['/login']">
+              <img src="../../../assets/images/perfil.png" class="w-12 h-12">
+          @if(userInfo){
+              {{ userInfo.usuario }}
+          } @else{iniciar sesion}</div>
+      </div>
+          
+      @if (userInfo) {
+      <button class="relative inline-flex items-center justify-center p-3 mb-2 me-2 overflow-hidden text-sm font-medium text-white rounded-2xl  bg-gray-900 hover:bg-black" (click)="onLogout()">Logout
+      </button>
+      }
+      
+
+      <div class="w-12 h-12" (click)="showBox()">
+        <i class="fa fa-shopping-cart"></i> <img src="../../../assets/images/carrito.png">
+      </div>
+  </div>
+</div>
+<div >
+  @if (!isHidden) {<app-carrito-box  class="flex justify-end mr-10" ></app-carrito-box>}
 </div>

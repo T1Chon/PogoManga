@@ -1,16 +1,19 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { CarritoBoxComponent } from '../carrito-box/carrito-box.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
  selector: 'app-header',
  standalone: true,
- imports: [RouterLink],
+ imports: [RouterLink, CarritoBoxComponent,FormsModule],
  templateUrl: './header.component.html',
  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
  userInfo: any;
+ isHidden = true;
 
  constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -34,4 +37,15 @@ export class HeaderComponent implements OnInit {
     location.reload();
     
  }
+
+ showBox(): void {
+  if (this.isHidden == true) {
+    this.isHidden = false;
+  }else if (this.isHidden == false) {
+    this.isHidden = true;
+  }
+
+  console.log(this.isHidden)
+ }
+
 }
