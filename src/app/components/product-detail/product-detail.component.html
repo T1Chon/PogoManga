@@ -10,7 +10,7 @@
 <div class="flex justify-center gap-20">
     <div class="flex flex-col gap-6 w-[5%]">
         @for (item of productImages; track item; let index = $index) {
-        <img class="border-solid border-1 max-w-[100%] max-h-[16%] border-black shadow-lg rounded-xl" src="{{item}}.jpg"
+        <img class="cursor-crosshair border-solid border-1 max-w-[100%] max-h-[16%] border-black shadow-lg rounded-xl" src="{{item}}.jpg"
             (click)="changeImg(index)">
         }
     </div>
