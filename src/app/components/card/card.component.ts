@@ -1,12 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProductResults, product } from '../../interfaces/card';
+import { Component, OnInit } from '@angular/core';
+import { ProductResults } from '../../interfaces/card';
 import { ServicesService } from '../../service/services.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CardInfoComponent } from '../card-info/card-info.component';
 import { RouterLink } from '@angular/router';
-
-
 
 @Component({
   selector: 'app-card',
@@ -22,7 +20,7 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.service.GetProducts();
+    console.log("prod",this.products$);
   }
-
 };
 

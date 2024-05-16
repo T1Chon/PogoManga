@@ -16,6 +16,4 @@ import { Observable } from 'rxjs';
 })
 export class CardInfoComponent {
   @Input() cardInfo!: product;
-
-  
 }

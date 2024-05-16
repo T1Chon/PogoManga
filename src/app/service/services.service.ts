@@ -26,4 +26,5 @@ export class ServicesService {
   GetProductById(productId: number): Observable<ProductResults> {
     return this.http.get<ProductResults>(`${this.urlLocal}/${productId}`);
   }
+  
 }
