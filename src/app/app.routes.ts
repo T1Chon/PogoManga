@@ -6,6 +6,7 @@ import { ShopLocationComponent } from './components/shop-location/shop-location.
 import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { FigurasComponent } from './components/figuras/figuras.component';
 
 
 export const  routes: Routes = [
@@ -29,5 +30,8 @@ export const  routes: Routes = [
     },
     {
         path: 'register', component: RegisterComponent
+    },
+    {
+        path: 'figuras', component: FigurasComponent
     }
 ];

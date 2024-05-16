@@ -1,10 +1,9 @@
 <div class="flex items-center flex-wrap bg-redHeader-500 min-h-[16vh] p-4 gap-5" id="header">
     <a href="#"><img src="../../../assets/images/pogomanga-logo.png" id="img-logo" class="h-30"></a>
 
-    <input type="text" id="buscador" placeholder="Buscar..."
-        class="bg-white bg-opacity-70 h-10 flex-1 bg-no-repeat bg-right rounded-md"
+    <input type="text" id="buscador" placeholder="Buscar..." (input)="search($event)"    
+    class="bg-white bg-opacity-70 h-10 flex-1 bg-no-repeat bg-right rounded-md"
         style="background-image: url('../../../assets/images/lupa-search.png')">
-
 
     @if(userInfo){
     <div class="login-container">
@@ -40,8 +39,8 @@
     @else { <div class="text-white flex items-center gap-3 cursor-pointer" [routerLink]="['/login']">
         <img src="../../../assets/images/perfil.png" class="w-12 h-12">Iniciar sesión
     </div>}
-    <div class="w-12 h-12" (click)="showBox()">
-        <i class="fa fa-shopping-cart"></i> <img src="../../../assets/images/carrito.png">
+    <div class="w-12 h-12 cursor-pointer" (click)="showBox()">
+        <i class="fa fa-shopping-cart "></i> <img src="../../../assets/images/carrito.png">
     </div>
 </div>
 

@@ -1,11 +1,10 @@
 <section class="lg:p-24 md:p-10">
     <p class="font-bold text-3xl">POGONOVEDADES</p>
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-10">
         @if(products$ | async; as resultObject) {
             @for (item of resultObject.productos.slice(0,8); track item.nombre) {
                 <app-card-info [cardInfo]="item"/>
             }
         }
     </div>
-
 </section>

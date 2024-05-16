@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { ServicesService } from '../../service/services.service';
-import { product } from '../../interfaces/card';
+import { ProductResults_detail, product, product_detail } from '../../interfaces/card';
 import { RouterLink } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { threadId } from 'worker_threads';
 
 
 @Component({
@@ -29,6 +30,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class ProductDetailComponent implements OnInit {
   @ViewChild('mainImage') mainImage!: ElementRef;
   public products!: product | undefined;
+  public products_detail!: product_detail | undefined;
   public productImages: string[] = [];
   currentImg = '';
   i = 0;
@@ -52,23 +54,35 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        switchMap(({ id }) => this.servicesservice.GetProductById(id)),
+        switchMap(({ id }) => {
+          return this.servicesservice.GetProductById(id).pipe(
+            switchMap(res => {
+              if (!res) return this.router.navigateByUrl('/');
+              this.products = res.productos[0];
+
+              for (let i = 1; i <= 4; i++) {
+                if (`${this.products?.img}-${i}`) {
+                  this.productImages.push(`${this.products?.img}-${i}`);
+                  console.log(`${this.products?.img}-${i}`);
+                }
+              }
+
+              this.currentImg = this.productImages[this.i] + '.jpg';
+              console.log(this.currentImg);
+
+              return this.servicesservice.GetProducts_detail(id, this.products.tipo);
+            })
+          );
+        })
       )
-      .subscribe(res => {
-        if (!res) return this.router.navigateByUrl('/')
-
-        this.products = res.productos[0];
-
-        for (let i = 1; i <= 4; i++) {
-          if (`${this.products?.img}-${i}`) {
-            this.productImages.push(`${this.products?.img}-${i}`)
-            console.log(`${this.products?.img}-${i}`)
-          }
+      .subscribe(resultado => {
+        console.log(resultado);
+        if (!resultado) {
+          return 
         }
-      
-        this.currentImg = this.productImages[this.i] + '.jpg';
-        console.log(this.currentImg);
-        return true
-      })
+         return this.products_detail = (resultado as ProductResults_detail).productos[0];
+      });
   }
+
+
 }

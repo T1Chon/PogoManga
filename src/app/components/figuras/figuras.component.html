@@ -1,0 +1,29 @@
+<div class="flex justify-center lg:px-36 lg:py-24">
+    <div class="bg-red-100 border-2 border-black flex flex-col  w-72 rounded-xl text-center gap-8 p-8 h-[50%]">
+        <h1 class="text-lg font-bold">Categorías</h1>
+        <p class="text-lg cursor-pointer hover:text-red-500">Dragon Ball</p>
+        <p class="text-lg cursor-pointer hover:text-red-500">Jujutsu Kaisen</p>
+        <p class="text-lg cursor-pointer hover:text-red-500">Kimetsu no Yaiba</p>
+        <p class="text-lg cursor-pointer hover:text-red-500">Naruto</p>
+        <p class="text-lg cursor-pointer hover:text-red-500">One Piece</p>
+        <div class="text-left">
+            <p class="text-lg cursor-default" id="filtrar-disponible">FILTRAR POR DISPONIBILIDAD:</p>
+            <input type="checkbox" id="Stock" name="Stock" value="Stock">
+            <label class="ml-1" for="Stock">Stock</label><br>
+            <input type="checkbox" id="Pre-venta" name="Pre-venta" value="Pre-venta">
+            <label class="ml-1" for="Pre-venta">Preventa</label>
+        </div>
+    </div>
+    <div class="ml-24">
+        <section>
+            <p class="font-bold text-3xl text-center">Figuras</p>
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-16">
+                @if(products$ | async; as resultObject) {
+                @for (item of resultObject.productos.slice(0,16); track item.nombre) {
+                <app-card-info [cardInfo]="item" />
+                }
+                }
+            </div>
+        </section>
+    </div>
+</div>
