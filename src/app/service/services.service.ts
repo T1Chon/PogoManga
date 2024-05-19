@@ -10,8 +10,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ServicesService {
 
   private urlLocal = "http://172.17.131.10:3000/api/productos";
-  private urlProducto_figura = "http://172.17.131.10:3000/api/producto_figura";
-  private url_Producto_manga = "http://172.17.131.10:3000/api/producto_manga";
+  // private urlProducto_figura = "http://172.17.131.10:3000/api/producto_figura";
+  private urlProducto_figura = "http://localhost:3000/api/producto_figura";
+  // private url_Producto_manga = "http://172.17.131.10:3000/api/producto_manga";
+  private url_Producto_manga = "http://localhost:3000/api/producto_manga";
+  private url_API = "http://localhost:3000/api/productos";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -22,15 +25,15 @@ export class ServicesService {
   constructor(private http: HttpClient) { };
   
   GetProducts():Observable<ProductResults> {
-    return this.http.get<ProductResults>(this.urlLocal);
+    return this.http.get<ProductResults>(this.url_API);
   }
 
   GetProductById(productId: number): Observable<ProductResults> {
-    return this.http.get<ProductResults>(`${this.urlLocal}/${productId}`);
+    return this.http.get<ProductResults>(`${this.url_API}/${productId}`);
   }
 
   searchProductsByName(nombre: string): Observable<ProductResults> {
-    return this.http.get<ProductResults>(`${this.urlLocal}/buscar/${nombre}`);
+    return this.http.get<ProductResults>(`${this.url_API}/buscar/${nombre}`);
   }
 
   GetProductsFigura():Observable<ProductResults> {
@@ -38,9 +41,8 @@ export class ServicesService {
   }
 
   GetProducts_detail(productId: number, tipo: number):Observable<ProductResults_detail> {
-    return this.http.get<ProductResults_detail>(`${this.urlLocal}/producto_detail/${productId}/${tipo}`);
+    return this.http.get<ProductResults_detail>(`${this.url_API}/producto_detail/${productId}/${tipo}`);
   }
-
 
   GetProductsManga():Observable<ProductResults> {
     return this.http.get<ProductResults>(this.url_Producto_manga);

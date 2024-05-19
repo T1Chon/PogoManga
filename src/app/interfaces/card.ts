@@ -15,20 +15,14 @@ export interface ProductResults {
 }
 
 export interface product_detail {
-    categoria: string;
     fabricante: string;
     id_producto: number;
-    img: string;
     licencia: string;
     material: string;
     nombre: string;
     origen: string;
-    precio: number;
     presentacion: string;
-    segunda_mano: number;
-    stock: number;
-    tamano: string;
-    tipo: number;
+    editoriales: string;
 }
 
 

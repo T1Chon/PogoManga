@@ -80,7 +80,9 @@ export class ProductDetailComponent implements OnInit {
         if (!resultado) {
           return 
         }
-         return this.products_detail = (resultado as ProductResults_detail).productos[0];
+         this.products_detail = (resultado as ProductResults_detail).productos[0];
+         console.log(this.products_detail);
+         return this.products_detail;
       });
   }
 

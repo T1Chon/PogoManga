@@ -17,9 +17,20 @@ import { RouterLink } from '@angular/router';
 })
 export class FigurasComponent implements OnInit {
   public products$!: Observable<ProductResults>;
+  public filteredProducts$!: Observable<ProductResults>;
   constructor(private service: ServicesService) { }
 
   ngOnInit(): void {
     this.products$ = this.service.GetProductsFigura();
   }
-}
+
+  // applyFilter(category: string) {
+  //   this.filteredProducts$ = this.products$.pipe(
+  //     .map(products => ({
+  //       productos: products.productos.filter()
+  //     }))
+  //   )
+  // }
+
+
+ }
