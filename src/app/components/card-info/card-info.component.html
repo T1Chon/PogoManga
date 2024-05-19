@@ -1,11 +1,10 @@
-<div class="flex flex-col justify-center items-center p-4 w-full border-2 rounded-xl shadow-lg hover:shadow-xl duration-300 hover:border-red-300">
+<div class="flex flex-col justify-center items-center w-full border-2 rounded-xl shadow-lg hover:shadow-xl duration-300 hover:border-red-300">
     <!-- <img class="rounded-xl cursor-pointer" [routerLink]="['/productdetail', cardInfo.id_producto]" src="{{ cardInfo.img }}-1.jpg"> -->
-    <img class="rounded-xl cursor-pointer" [routerLink]="['/productdetail', cardInfo.id_producto]" src="{{ cardInfo.img }}">
-    <h2 class="text-xl text-center cursor-pointer font-semibold mt-3 mb-2 hover:text-red-500" [routerLink]="['/productdetail', cardInfo.id_producto]">{{ cardInfo.nombre }}</h2>
-    <h2 class="text-xl font-semibold mb-2">{{ cardInfo.precio }}€</h2>
-    <button
-        class="transition ease duration-300 text-white border-1 rounded-2xl 
-        p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink">
-        Añadir al carrito</button>
-    <h2 class="hidden">{{ cardInfo.id_producto}}</h2>
+    <img class="h-[100%] rounded-xl cursor-pointer" [routerLink]="['/productdetail', cardInfo.id_producto]"  src="{{ cardInfo.img }}">
+    <div class="h-[40%]">
+        <h2 class="text-xl text-center cursor-pointer font-semibold mt-3 mb-2 hover:text-red-500" [routerLink]="['/productdetail', cardInfo.id_producto]">{{ cardInfo.nombre }}</h2>
+        <h2 class="text-xl font-semibold mb-2">{{ cardInfo.precio }}€</h2>
+        <button class="transition ease duration-300 text-white border-1 rounded-2xl  p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink"> Añadir al carrito</button>
+        <h2 class="hidden">{{ cardInfo.id_producto}}</h2>
+    </div>
 </div>

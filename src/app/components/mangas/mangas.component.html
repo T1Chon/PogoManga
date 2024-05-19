@@ -1,9 +1,9 @@
 <div class="flex justify-center lg:px-36 lg:py-24">
     <div class="bg-red-100 border-2 border-black flex flex-col  w-72 rounded-xl text-center gap-8 p-8 h-[50%]">
         <h1 class="text-lg font-bold">Categorías</h1>
-        <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Dragon Ball')">Dragon Ball</p>
-    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Jujutsu Kaisen')">Jujutsu Kaisen</p>
-    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Kimetsu no Yaiba')">Kimetsu no Yaiba</p>
+        <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Berserk')">Berserk</p>
+    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('One Punch Man')">One Punch Man</p>
+    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Vagabond')">Vagabond</p>
     <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Naruto')">Naruto</p>
     <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('One Piece')">One Piece</p>
         <div class="text-left">
@@ -16,10 +16,10 @@
     </div>
     <div class="ml-24">
         <section>
-            <p class="font-bold text-3xl text-center">Figuras</p>
+            <p class="font-bold text-3xl text-center">Mangas</p>
             <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-16">
                 @if(products$ | async; as resultObject) {
-                @for (item of resultObject.productos.slice(0,16); track item.nombre) {
+                    @for (item of (resultObject.productos.length > 16 ? resultObject.productos.slice(0, 16) : resultObject.productos); track item.nombre){
                 <app-card-info [cardInfo]="item" />
                 }
                 }

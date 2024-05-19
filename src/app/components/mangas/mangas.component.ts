@@ -6,16 +6,15 @@ import { AsyncPipe } from '@angular/common';
 import { CardInfoComponent } from '../card-info/card-info.component';
 import { RouterLink } from '@angular/router';
 
-
 @Component({
-  selector: 'app-figuras',
+  selector: 'app-mangas',
   standalone: true,
   imports: [AsyncPipe, CardInfoComponent, RouterLink],
   providers: [ServicesService],
-  templateUrl: './figuras.component.html',
-  styleUrl: './figuras.component.css'
+  templateUrl: './mangas.component.html',
+  styleUrl: './mangas.component.css'
 })
-export class FigurasComponent implements OnInit {
+export class MangasComponent {
   public products$!: Observable<ProductResults>;
   public copyProducts$!: Observable<ProductResults>;
   public filteredProducts$!: Observable<ProductResults>;
@@ -27,7 +26,7 @@ export class FigurasComponent implements OnInit {
   constructor(private service: ServicesService) { }
 
   ngOnInit(): void {
-    this.products$ = this.service.GetProductsFigura();
+    this.products$ = this.service.GetProductsManga();
     this.copyProducts$ = this.products$;
   }
 
@@ -66,12 +65,4 @@ export class FigurasComponent implements OnInit {
       this.products$ = of(newProductResults);
     });
   }
-
-//   const filteredProducts = {
-//     productos: Products[]
-//   }
-
-  
-
-
- }
+}

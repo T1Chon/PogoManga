@@ -15,7 +15,7 @@ import { ServicesService } from '../../service/services.service';
 export class HeaderComponent implements OnInit {
   userInfo: any;
   isHidden = true;
-  productos: any[] = [];
+  searchInput: string | undefined;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -50,20 +50,12 @@ export class HeaderComponent implements OnInit {
     console.log(this.isHidden)
   }
 
-  search(event: any): void {
-    const term = event.target?.value;
-    if (term) {
-      this.service.searchProductsByName(term).subscribe(
-        (results) => {
-          this.productos = results.productos;
-        },
-        (error) => {
-          console.error('Error al buscar productos:', error);
-          // Manejar errores
-        }
-      );
-    } else {
-      // Manejar el caso en que el valor sea nulo
+  searchProduct(searchInput: string):void {
+    if(searchInput != undefined ) {
+      this.searchInput = searchInput;
+      this.router.navigate(['/result-search'], { queryParams: { parametro1: this.searchInput } });
     }
   }
+
+
 }

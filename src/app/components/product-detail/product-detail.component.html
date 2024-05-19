@@ -1,11 +1,11 @@
 <div class="flex gap-1 items-center">
     <button [routerLink]="['/main']">Inicio</button>
     <p class="m-0">></p>
-    <button>Figuras</button>
+    <button [routerLink]="['/figuras']">Figuras</button>
     <p class="m-0">></p>
     <button> {{ products?.categoria }}</button>
     <p class="m-0">></p>
-    <button> {{ products_detail?.nombre }} </button>
+    <p class="m-0">{{ products_detail?.nombre }} </p>
 </div>
 <div class="flex justify-center gap-20">
     <div class="flex flex-col gap-6 w-[5%]">

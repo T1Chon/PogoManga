@@ -7,6 +7,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { FigurasComponent } from './components/figuras/figuras.component';
+import { MangasComponent } from './components/mangas/mangas.component';
+import { ResultSearchComponent } from './components/result-search/result-search.component';
 
 
 export const  routes: Routes = [
@@ -33,5 +35,12 @@ export const  routes: Routes = [
     },
     {
         path: 'figuras', component: FigurasComponent
+    },
+    {
+        path: 'mangas', component: MangasComponent
+    },
+    {
+        path: 'result-search', component: ResultSearchComponent
     }
+
 ];

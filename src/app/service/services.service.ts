@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ProductResults, ProductResults_detail, product } from '../interfaces/card';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { ProductResults, ProductResults_detail } from '../interfaces/card';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +20,14 @@ export class ServicesService {
     })
   }
 
+  private allProducts: ProductResults | null = null;
 
   constructor(private http: HttpClient) { };
   
   GetProducts():Observable<ProductResults> {
+    if (this.allProducts) {
+      return of(this.allProducts);
+    }
     return this.http.get<ProductResults>(this.url_API);
   }
 
