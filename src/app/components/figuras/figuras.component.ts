@@ -41,10 +41,10 @@ export class FigurasComponent implements OnInit {
     const { id, checked } = event.target;
     if (id === 'Stock') {
       this.availableStock = checked;
-    } else if (id === 'Pre-venta') {
+    } else if (id === 'segunda_mano') {
       this.preSale = checked;
     }
-    console.log(`Availability filter - Stock: ${this.availableStock}, Pre-sale: ${this.preSale}`);
+    console.log(`Availability filter - Stock: ${this.availableStock}, segunda_mano: ${this.preSale}`);
     this.applyFilters();
   }
 

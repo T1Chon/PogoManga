@@ -22,7 +22,11 @@ export interface product_detail {
     nombre: string;
     origen: string;
     presentacion: string;
+    autores: string;
     editoriales: string;
+    num_paginas: number;
+    color: string;
+    isbn: number;
 }
 
 

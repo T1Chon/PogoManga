@@ -2,12 +2,14 @@
     <div class="bg-red-100 border-2 border-black flex flex-col  w-72 rounded-xl text-center gap-8 p-8 h-[50%]">
         <h1 class="text-lg font-bold">Categorías</h1>
         <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Berserk')">Berserk</p>
-    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('One Punch Man')">One Punch Man</p>
+    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Punpun')">Punpun</p>
     <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Vagabond')">Vagabond</p>
     <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Naruto')">Naruto</p>
     <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('One Piece')">One Piece</p>
+    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Hunter x Hunter')">Hunter x Hunter</p>
+    <p class="text-lg cursor-pointer hover:text-red-500" (click)="filterCategory('Hajime no Ippo')">Hajime no Ippo</p>
         <div class="text-left">
-            <p class="text-lg cursor-default" id="filtrar-disponible">FILTRAR POR DISPONIBILIDAD:</p>
+            <p class="font-bold text-lg cursor-default" id="filtrar-disponible">FILTRAR POR DISPONIBILIDAD:</p>
             <input type="checkbox" id="Stock" name="Stock" value="Stock" (change)="filterAvailability($event)">
             <label class="ml-1" for="Stock">Stock</label><br>
             <input type="checkbox" id="Pre-venta" name="Pre-venta" value="Pre-venta" (change)="filterAvailability($event)">
