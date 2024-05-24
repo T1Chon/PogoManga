@@ -8,7 +8,7 @@
     <p class="m-0">{{ products_detail?.nombre }} </p>
 </div>
 <div class="flex justify-center gap-20">
-    <div class="flex flex-col gap-6 h-[5%] w-[5%]">
+    <div class="flex flex-col gap-6 min-h-[5%] w-[5%]">
         @if (products?.tipo == 1) {
         @for (item of productImages; track item; let index = $index) {
         <img class="cursor-crosshair border-solid border-1 max-w-[100%] max-h-[100%]  border-black shadow-lg rounded-xl"
@@ -18,7 +18,9 @@
         }
         }
     </div>
-    <img #mainImage class="h-[30%] w-[30%] object-contain rounded-xl" src="{{ currentImg }}">
+    <div class="w-[50%]">
+        <img #mainImage class="h-[100%] w-[100%] object-contain rounded-xl" src="{{ currentImg }}">
+    </div>
 
     <!-- <img #mainImage class="h-[30%] w-[30%] rounded-xl" src="https://imgs.search.brave.com/Ua5JNGfSbblzMHRgX2LdXqZL5bUputIPQ-76aKY4AJc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFVa2RKZGZjdEwu/anBn"> -->
     <div class="w-[20%]">
