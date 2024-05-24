@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { isPlatformBrowser } from "@angular/common";
 
+import { UserService } from '../../service/user.service';
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, HttpClientModule, RouterLink],
+  providers: [UserService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -19,11 +22,9 @@ import { isPlatformBrowser } from "@angular/common";
 export class LoginComponent {
   loginObj: Login;
 
-  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object, public UserService: UserService) {
     this.loginObj = new Login();
   }
-
-
   
 
   async onLogin() {
@@ -35,6 +36,7 @@ export class LoginComponent {
       if (res.user) {
         console.log('respuesta: ',res);
          sessionStorage.setItem('user' , JSON.stringify(res));
+         this.UserService.setLoggedInUser(res.user);
          const session = sessionStorage.getItem('user');
          
          if (session !== null) {
@@ -51,6 +53,8 @@ export class LoginComponent {
         alert(res.message);
       }
     });
+
+    
     
   }
 

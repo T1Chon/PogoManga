@@ -33,6 +33,7 @@ export class Register {
   nombre: string;
   apellido1: string;
   apellido2: string;
+  correo: string;
   contrasena: string;
 
   constructor() {
@@ -40,6 +41,7 @@ export class Register {
     this.nombre = '';
     this.apellido1 = '';
     this.apellido2 = '';
+    this.correo = '';
     this.contrasena = '';
   }
 

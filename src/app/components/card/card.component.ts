@@ -20,7 +20,6 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.service.GetProducts();
-    console.log("prod",this.products$);
   }
 };
 
