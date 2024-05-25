@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { product } from '../../interfaces/card';
 import { RouterLink } from '@angular/router';
 import { ServicesService } from '../../service/services.service';
-import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -16,6 +16,4 @@ import { Observable } from 'rxjs';
 })
 export class CardInfoComponent {
   @Input() cardInfo!: product;
-
-  
 }

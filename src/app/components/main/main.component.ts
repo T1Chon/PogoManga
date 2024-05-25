@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { CarruselComponent } from '../carrusel/carrusel.component';
-
+import { initFlowbite } from 'flowbite';
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
   selector: 'app-main',
@@ -12,4 +13,13 @@ import { CarruselComponent } from '../carrusel/carrusel.component';
 })
 export class MainComponent{
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {        
+        initFlowbite();  
+      }, 100);
+    }
+  }
 }

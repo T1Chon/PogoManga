@@ -1,15 +1,20 @@
 // login info: https://www.bacancytechnology.com/qanda/angular/session-storage-in-angular-application#:~:text=To%20store%20the%20data%20in,can%20use%20the%20setItem%20method.
 
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
+import { initFlowbite } from 'flowbite';
+import { isPlatformBrowser } from "@angular/common";
+
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, HttpClientModule, RouterLink],
+  providers: [UserService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,9 +22,10 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginObj: Login;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, @Inject(PLATFORM_ID) private platformId: Object, public UserService: UserService) {
     this.loginObj = new Login();
   }
+  
 
   async onLogin() {
 
@@ -30,6 +36,7 @@ export class LoginComponent {
       if (res.user) {
         console.log('respuesta: ',res);
          sessionStorage.setItem('user' , JSON.stringify(res));
+         this.UserService.setLoggedInUser(res.user);
          const session = sessionStorage.getItem('user');
          
          if (session !== null) {
@@ -46,6 +53,8 @@ export class LoginComponent {
         alert(res.message);
       }
     });
+
+    
     
   }
 

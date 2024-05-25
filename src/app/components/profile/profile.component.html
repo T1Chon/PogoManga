@@ -1,0 +1,42 @@
+<div class="flex gap-5">
+    @if (direcciones && direcciones.length > 0) {
+      <div class="flex flex-col w-fit">
+        <h2>PROFILE</h2>
+        @for (item of direcciones; track $index) {
+          <label for="pais">pais:</label>
+          <input type="text" name="" id="" value="{{item.pais}}">
+          <label for="provincia">provincia:</label>
+          <input type="text" name="" id="" value="{{item.provincia}}">
+          <label for="ciudad">ciudad:</label>
+          <input type="text" name="" id="" value="{{item.ciudad}}">
+          <label for="codigo_postal">codigo_postal:</label>
+          <input type="text" name="" id="" value="{{item.codigo_postal}}">
+          <label for="calle">calle:</label>
+          <input type="text" name="" id="" value="{{item.calle}}">
+          <label for="piso">piso:</label>
+          <input type="text" name="" id="" value="{{item.piso}}">
+          <label for="puerta">puerta:</label>
+          <input type="text" name="" id="" value="{{item.puerta}}">
+        }
+      </div>
+    } @else {
+      <h3>Todavía no tienes ninguna dirección</h3>
+    }
+  
+    <div class="flex flex-col w-fit">
+
+      <h3>INFORMACION PERSONAL</h3>
+      <label for="usuario">usuario:</label>
+      <input type="text" name="" id="" value="{{user?.usuario}}">
+      <label for="nombre">nombre:</label>
+      <input type="text" name="" id="" value="{{user?.nombre}}">
+      <label for="apellido1">apellido:</label>
+      <input type="text" name="" id="" value="{{user?.apellido1}}">
+      <label for="apellido2">apellido:</label>
+      <input type="text" name="" id="" value="{{user?.apellido2}}">
+      <label for="correo">correo:</label>
+      <input type="text" name="" id="" value="{{user?.correo}}">
+    </div>
+    <!-- <button (click)="onUpdate()">Actualizar</button> -->
+  </div>
+  

@@ -6,6 +6,10 @@ import { ShopLocationComponent } from './components/shop-location/shop-location.
 import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { FigurasComponent } from './components/figuras/figuras.component';
+import { MangasComponent } from './components/mangas/mangas.component';
+import { ResultSearchComponent } from './components/result-search/result-search.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 export const  routes: Routes = [
@@ -29,5 +33,18 @@ export const  routes: Routes = [
     },
     {
         path: 'register', component: RegisterComponent
+    },
+    {
+        path: 'figuras', component: FigurasComponent
+    },
+    {
+        path: 'mangas', component: MangasComponent
+    },
+    {
+        path: 'profile', component: ProfileComponent
+    },
+    {
+        path: 'result-search', component: ResultSearchComponent
     }
+
 ];

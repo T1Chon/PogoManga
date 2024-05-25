@@ -4,38 +4,32 @@
         <form action="" method="post" class="flex flex-col gap-y-4">
             <label for="user" class="flex justify-center items-start flex-col ">
                 <h2 class="text-sm">Usuario</h2>
-                <input type="text" name="User" id="user" cols="15" rows="1" maxlength="15" class="w-full"
-                    [(ngModel)]="registerObj.usuario">
+                <input type="text" name="User" id="user" cols="15" rows="1" maxlength="20" required class="w-full" [(ngModel)]="registerObj.usuario">
             </label>
             <label for="name" class="flex justify-center items-start flex-col  ">
                 <h2 class="text-sm">Nombre</h2>
-                <input type="text" name="name" id="psw" cols="15" rows="1" maxlength="15" placeholder="" class="w-full"
-                    [(ngModel)]="registerObj.nombre">
+                <input type="text" name="name" id="name" cols="15" rows="1" maxlength="20" required placeholder="" class="w-full" [(ngModel)]="registerObj.nombre">
             </label>
             <label for="firstname" class="flex justify-center items-start flex-col ">
                 <h2 class="text-sm">Primer Apellido</h2>
-                <input type="text" name="firstname" id="psw" cols="15" rows="1" maxlength="15" placeholder=""
-                    class="w-full" [(ngModel)]="registerObj.apellido1">
+                <input type="text" name="firstname" id="firstname" cols="15" rows="1" maxlength="20" required placeholder="" class="w-full" [(ngModel)]="registerObj.apellido1">
             </label>
             <label for="secondname" class="flex justify-center items-start flex-col">
                 <h2 class="text-sm">Segundo Apellido</h2>
-                <input type="text" name="secondname" id="psw" cols="15" rows="1" maxlength="15" placeholder=""
-                    class="w-full" [(ngModel)]="registerObj.apellido2">
+                <input type="text" name="secondname" id="secondname" cols="15" rows="1" maxlength="20" required placeholder="" class="w-full" [(ngModel)]="registerObj.apellido2">
+            </label>
+            <label for="correo" class="flex justify-center items-start flex-col">
+                <h2 class="text-sm">Correo</h2>
+                <input type="email" name="secondname" id="correo" cols="15" rows="1" maxlength="50" required placeholder="" class="w-full" [(ngModel)]="registerObj.correo">
             </label>
             <label for="password" class="flex justify-center items-start flex-col ">
                 <h2 class="text-sm">Contraseña</h2>
-                <input type="password" name="password" id="psw" cols="15" rows="1" maxlength="15" placeholder=""
-                    class="w-full" [(ngModel)]="registerObj.contrasena">
-
+                <input type="password" name="password" id="password" cols="15" rows="1" minlength="8" maxlength="20" required placeholder="" class="w-full" [(ngModel)]="registerObj.contrasena">
             </label>
-            <label for="button" class="flex justify-center ">
-                <button
-                    class="transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink"
-                    type="submit" (click)="onRegister()">Register</button>
-                    
-            </label>
-            <label>
-                <!-- <div class="">
+            <button class="transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink"  type="submit" (click)="onRegister()">Register</button>  
+             
+            <!-- <label>
+                <div class="">
                             <div id="g_id_onload"
                                 data-client_id="31992607121-23bba5v4cm48mb7eqvhm5hjn3hleavbi.apps.googleusercontent.com"
                                 data-context="signup" data-ux_mode="redirect"
@@ -45,8 +39,8 @@
                             <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
                                 data-text="signin_with" data-size="large" data-logo_alignment="left">
                             </div>
-                        </div> -->
-            </label>
+                        </div>
+            </label>  -->
         </form>
     </div>
 </main>
