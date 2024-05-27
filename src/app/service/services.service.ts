@@ -8,12 +8,12 @@ import { ProductResults, ProductResults_detail } from '../interfaces/card';
 })
 export class ServicesService {
 
-  private urlLocal = "http://172.17.131.10:3000/api/productos";
-  private urlProducto_figura = "http://172.17.131.10:3000/api/producto_figura";
-  //private urlProducto_figura = "http://localhost:3000/api/producto_figura";
-  private url_Producto_manga = "http://172.17.131.10:3000/api/producto_manga";
-  //private url_Producto_manga = "http://localhost:3000/api/producto_manga";
+  private urlLocal = "http://localhost:3000/api/productos";
+  private urlProducto_figura = "http://localhost:3000/api/producto_figura";
+  private url_Producto_manga = "http://localhost:3000/api/producto_manga";
   //private url_API = "http://localhost:3000/api/productos";
+  //private urlProducto_figura = "http://localhost:3000/api/producto_figura";
+  //private url_Producto_manga = "http://localhost:3000/api/producto_manga";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

@@ -1,58 +1,89 @@
-import { Component, OnInit, Inject, PLATFORM_ID  } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { AsyncPipe, isPlatformBrowser } from '@angular/common';
-import { on } from 'events';
 import { AddressService } from '../../service/address.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { usersResults } from '../../interfaces/users';
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { UsersService } from '../../service/users.service';
 import { LoginComponent } from '../login/login.component';
 import { UserService } from '../../service/user.service';
-
+import { HeaderComponent } from '../header/header.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [LoginComponent],
+  imports: [LoginComponent, HeaderComponent, FormsModule, HttpClientModule],
   providers: [AddressService, UsersService, UserService, AsyncPipe],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
-  user: any = null;
+export class ProfileComponent implements OnInit {
+  user: any = {};
   direcciones: any[] = [];
   userId: number = 0;
 
   constructor(
     private addressService: AddressService,
-    private userService: UserService,
+    private usersService: UsersService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       const userSession = sessionStorage.getItem('user');
       if (userSession) {
         const userData = JSON.parse(userSession);
-        const user = userData.user[0];
-        console.log(user.id_usuario);
-        this.userId = user.id_usuario;
-        this.getDirecciones(this.userId);
+        if (userData && userData.user) {
+          this.userId = userData.user.id_usuario;
+          this.getUserAndDirecciones(this.userId);
+          console.log('Usuario logueado:', this.user);
+        } else {
+          console.log('No hay usuario logueado');
+        }
       } else {
         console.log('No hay usuario logueado');
       }
     }
   }
 
-  getDirecciones(userId: number): void {
+  getUserAndDirecciones(userId: number): void {
     this.addressService.getDirecciones(userId).subscribe({
       next: (data) => {
-        this.user = data.user;
+        this.user = { ...this.user, ...data.user };
         this.direcciones = data.direcciones;
-        console.log('Usuario obtenido:', this.user);
-        console.log('Direcciones obtenidas:', this.direcciones);
+        console.log('Datos obtenidos:', data);
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Error al obtener direcciones:', error.message);
+        console.error('Error al obtener datos:', error.message);
+      }
+    });
+  }
+
+  updateUser(): void {
+    if (this.userId && this.user) {
+      this.usersService.updateUser(this.userId, this.user).subscribe({
+        next: (response) => {
+          console.log('Usuario actualizado con éxito:', response);
+          this.user = { ...this.user, ...response };
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Error al actualizar usuario:', error.message);
+        }
+      });
+    }
+  }
+
+  updateDireccion(direccionId: number, direccion: any): void {
+    console.log('Datos antes de enviar:', direccion);
+    this.addressService.updateDireccion(direccionId, direccion).subscribe({
+      next: (response) => {
+        console.log('Dirección actualizada con éxito:', response);
+        const index = this.direcciones.findIndex(d => d.id_direccion === direccionId);
+        if (index !== -1) {
+          this.direcciones[index] = { ...this.direcciones[index], ...direccion };
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error al actualizar dirección:', error.message);
       }
     });
   }

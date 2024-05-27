@@ -6,5 +6,6 @@ export interface user {
     contrasena: string;
 }
 export interface usersResults{
+    usuarios: any;
     users: usersResults[]
 }

@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 
 export class CarritoService {
 
-  private urlLocal = "http://172.17.131.10:3000/api/cesta";
+  // private urlLocal = "http://172.17.131.10:3000/api/cesta";
+  private urlLocal = "http://localhost:3000/api/cesta";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -18,7 +19,7 @@ export class CarritoService {
 
 
   constructor(private http: HttpClient) { };
-  
+
   GetCarrito():Observable<CarritocardResults> {
     return this.http.get<CarritocardResults>(this.urlLocal);
   }

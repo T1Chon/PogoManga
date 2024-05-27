@@ -8,7 +8,8 @@ import { usersResults, user } from '../interfaces/users';
 })
 export class UsersService {
 
-  private urlLocal = "http://172.17.131.10:3000/api/usuarios";
+  // private urlLocal = "http://172.17.131.10:3000/api/usuarios";
+  private urlLocal = "http://localhost:3000/api/usuarios";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -17,7 +18,7 @@ export class UsersService {
 
 
   constructor(private http: HttpClient) { };
-  
+
   GetUsers():Observable<usersResults> {
     return this.http.get<usersResults>(this.urlLocal);
   }
@@ -28,7 +29,11 @@ export class UsersService {
   // AddUser(usuario: string, nombre: string,apellido1: string, apellido2: string, contrasena: string): Observable<usersResults> {
   //   return this.http.get<usersResults>(`${this.urlLocal}/${usuario}`);
   // }
-  
 
-  
+  updateUser(userId: number, userData: any): Observable<usersResults> {
+    return this.http.put<usersResults>(`${this.urlLocal}/${userId}`, userData, this.httpOptions);
+  }
+
+
+
 }
