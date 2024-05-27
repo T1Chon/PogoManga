@@ -3,7 +3,8 @@ import { Router, RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { CarritoBoxComponent } from '../carrito-box/carrito-box.component';
 import { FormsModule } from '@angular/forms';
-import { ServicesService } from '../../service/services.service';
+import { CarritoServiceService } from '../../service/carrito-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +17,21 @@ export class HeaderComponent implements OnInit {
   userInfo: any;
   isHidden = true;
   searchInput: string | undefined;
+  public productNumber$!: Observable<number>
+  public number: number = 0;
+
+
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private router: Router, private service: ServicesService // Inyecta el servicio Router aquí
+    private router: Router, private carritoService: CarritoServiceService // Inyecta el servicio Router aquí
   ) { }
 
 
   ngOnInit(): void {
+    this.productNumber$ = this.carritoService.productsNumber;
+    this.productNumber$.subscribe(data => this.number = data);
+
     if (isPlatformBrowser(this.platformId)) {
       const session = window.sessionStorage.getItem('user');
       if (session !== null) {
@@ -56,6 +64,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/result-search'], { queryParams: { parametro1: this.searchInput } });
     }
   }
+
 
 
 }

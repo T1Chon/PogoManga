@@ -17,6 +17,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './card.component.css'
 })
 export class CardComponent implements OnInit {
+  
   public products$!: Observable<ProductResults>;
   constructor(private service: ServicesService) { }
 
