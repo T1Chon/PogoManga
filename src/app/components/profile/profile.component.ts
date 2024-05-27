@@ -19,7 +19,9 @@ import { FormsModule } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   user: any = {};
   direcciones: any[] = [];
+  nuevaDireccion: any = {};
   userId: number = 0;
+  agregandoDireccion: boolean = false;
 
   constructor(
     private addressService: AddressService,
@@ -87,4 +89,44 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
+
+  agregarDireccion(): void {
+    this.agregandoDireccion = true;
+    this.nuevaDireccion = {};
+  }
+
+  confirmarNuevaDireccion(): void {
+    if (this.userId && this.nuevaDireccion) {
+      this.addressService.addDireccion(this.userId, this.nuevaDireccion).subscribe({
+        next: (response) => {
+          console.log('Nueva dirección agregada con éxito:', response);
+          this.getUserAndDirecciones(this.userId); // Actualiza la lista de direcciones después de agregar la nueva
+          this.nuevaDireccion = {}; // Limpia los campos del formulario de nueva dirección
+          this.agregandoDireccion = false; // Oculta el formulario de nueva dirección
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Error al agregar nueva dirección:', error.message);
+        }
+      });
+    }
+  }
+
+  cancelarAgregarDireccion(): void {
+    this.agregandoDireccion = false;
+    this.nuevaDireccion = {};
+  }
+
+  eliminarDireccion(direccionId: number): void {
+    this.addressService.deleteDireccion(direccionId).subscribe({
+      next: () => {
+        console.log('Dirección eliminada con éxito');
+        this.getUserAndDirecciones(this.userId); // Actualiza la lista de direcciones después de eliminarla
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error al eliminar dirección:', error.message);
+      }
+    });
+  }
+
+
 }

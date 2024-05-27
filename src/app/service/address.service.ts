@@ -19,5 +19,14 @@ export class AddressService {
   updateDireccion(direccionId: number, direccion: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${direccionId}`, direccion);
   }
-  
+
+  addDireccion(userId: number, nuevaDireccion: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}?userId=${userId}`, nuevaDireccion);
+  }
+
+  deleteDireccion(direccionId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/${direccionId}`);
+  }
+
+
 }
