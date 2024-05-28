@@ -20,19 +20,39 @@
       <h3>DIRECCIONES</h3>
       @for (item of direcciones; track $index) {
         <label for="pais">pais:</label>
-        <input type="text" name="pais" id="pais" [(ngModel)]="item.pais">
+        <select name="pais" id="pais" [(ngModel)]="item.pais" class="border rounded p-2" (change)="onPaisChange(item)">
+          @for (pais of paisesEuropa; track $index) {
+            <option id="pais" value={{pais}}>{{ pais }}</option>
+          }
+        </select>
+
         <label for="provincia">provincia:</label>
-        <input type="text" name="provincia" id="provincia" [(ngModel)]="item.provincia">
+        <select name="provincia" id="provincia" [(ngModel)]="item.provincia">
+          @for (provincia of item.provincias; track $index) {
+            <option id="provincia" value={{provincia}}>{{ provincia }}</option>
+          }
+        </select>
+
         <label for="ciudad">ciudad:</label>
         <input type="text" name="ciudad" id="ciudad" [(ngModel)]="item.ciudad">
+
         <label for="codigo_postal">codigo_postal:</label>
-        <input type="text" name="codigo_postal" id="codigo_postal" [(ngModel)]="item.codigo_postal">
+        <input type="number" name="codigo_postal" id="codigo_postal" [(ngModel)]="item.codigo_postal"
+               pattern="\d{5}" maxlength="5" title="El código postal debe ser un número de 5 dígitos">
+        @if (codigoPostalErrorMessage && item.codigo_postal !== undefined && !validarCodigoPostal(item.codigo_postal.toString())) {
+          <div class="error-message bg-red-400 border border-red-700 p-1 m-1 rounded-md">{{ codigoPostalErrorMessage }}</div>
+        }
+
+
         <label for="calle">calle:</label>
         <input type="text" name="calle" id="calle" [(ngModel)]="item.calle">
+
         <label for="piso">piso:</label>
         <input type="text" name="piso" id="piso" [(ngModel)]="item.piso">
+
         <label for="puerta">puerta:</label>
         <input type="text" name="puerta" id="puerta" [(ngModel)]="item.puerta">
+
         <button class="p-2 bg-teal-500 text-white rounded-lg mt-2 w-fit mx-auto" (click)="updateDireccion(item.id_direccion, item)">Actualizar Dirección</button>
         <button class="p-2 bg-red-500 text-white rounded-lg mt-2 w-fit mx-auto" (click)="eliminarDireccion(item.id_direccion)">Eliminar Dirección</button>
 
@@ -52,19 +72,37 @@
       @if (agregandoDireccion) {
 
         <label for="pais">pais:</label>
-        <input type="text" name="pais" id="nuevaDireccionPais" [(ngModel)]="nuevaDireccion.pais">
+        <select name="pais" id="pais" [(ngModel)]="nuevaDireccion.pais" class="border rounded p-2" (change)="onPaisChange(nuevaDireccion)">
+          @for (pais of paisesEuropa; track $index) {
+            <option id="pais" value={{pais}}>{{ pais }}</option>
+          }
+        </select>
+
         <label for="provincia">provincia:</label>
-        <input type="text" name="provincia" id="nuevaDireccionProvincia" [(ngModel)]="nuevaDireccion.provincia">
+        <select name="provincia" id="provincia" [(ngModel)]="nuevaDireccion.provincia">
+          @for (provincia of nuevaDireccion.provincias; track $index) {
+            <option id="provincia" value={{provincia}}>{{ provincia }}</option>
+          }
+        </select>
+
         <label for="ciudad">ciudad:</label>
         <input type="text" name="ciudad" id="nuevaDireccionCiudad" [(ngModel)]="nuevaDireccion.ciudad">
+
         <label for="codigo_postal">codigo_postal:</label>
         <input type="text" name="codigo_postal" id="nuevaDireccionCodigo_postal" [(ngModel)]="nuevaDireccion.codigo_postal">
+        @if (codigoPostalErrorMessage && nuevaDireccion.codigo_postal !== undefined && !validarCodigoPostal(nuevaDireccion.codigo_postal.toString())) {
+          <div class="error-message bg-red-400 border border-red-700 p-1 m-1 rounded-md">{{ codigoPostalErrorMessage }}</div>
+        }
+
         <label for="calle">calle:</label>
         <input type="text" name="calle" id="nuevaDireccionCalle" [(ngModel)]="nuevaDireccion.calle">
+
         <label for="piso">piso:</label>
         <input type="text" name="piso" id="nuevaDireccionPiso" [(ngModel)]="nuevaDireccion.piso">
+
         <label for="puerta">puerta:</label>
         <input type="text" name="puerta" id="nuevaDireccionPuerta" [(ngModel)]="nuevaDireccion.puerta">
+
         <button class="p-2 bg-teal-500 text-white rounded-lg mt-2 w-fit mx-auto" (click)="confirmarNuevaDireccion()">Guardar Dirección</button>
         <button class="p-2 bg-red-500 text-white rounded-lg mt-2 w-fit mx-auto" (click)="cancelarAgregarDireccion()">Cancelar</button>
       }

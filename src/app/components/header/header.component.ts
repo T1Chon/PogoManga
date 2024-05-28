@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
-    private authService: AuthserviceService 
+    private authService: AuthserviceService
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }

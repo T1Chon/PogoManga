@@ -7,14 +7,13 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { isPlatformBrowser } from "@angular/common";
-import { UserService } from '../../service/user.service';
 import { AuthserviceService } from '../../service/authservice.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, HttpClientModule, RouterLink],
-  providers: [UserService, AuthserviceService],
+  providers: [AuthserviceService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
