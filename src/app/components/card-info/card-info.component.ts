@@ -21,26 +21,34 @@ export class CardInfoComponent {
 
   constructor(private carritoService: CarritoServiceService) {}
 
-  addToCart() {
-    if (this.cardInfo != null) {
-      const carritoItem: productCart = { 
-        id_producto: this.cardInfo.id_producto,
-        id_cesta: '', 
-        id_usuario: 0,
-        cantidad: 1, 
-        fecha_cesta: new Date(),
-        nombre: this.cardInfo.nombre,
-        precio: this.cardInfo.precio,
-        tamano: this.cardInfo.tamano,
-        stock: this.cardInfo.stock,
-        categoria: this.cardInfo.categoria,
-        Segunda_mano: this.cardInfo.segunda_mano,
-        img: this.cardInfo.img
-      };
-      this.carritoService.addNewProductToCart(carritoItem);
+    addToCart() {
+      const session = sessionStorage.getItem('user');
+      if (session) {
+        const sessionFormat = JSON.parse(session);  
+        if (this.cardInfo != null) {
+          const carritoItem: productCart = {
+            id_producto: this.cardInfo.id_producto,
+            id_cesta: '',
+            id_usuario: sessionFormat.user[0].id_usuario,
+            cantidad: 1,
+            fecha_cesta: new Date(), 
+            nombre: this.cardInfo.nombre,
+            precio: parseFloat(this.cardInfo.precio),
+            tamano: this.cardInfo.tamano,
+            stock: this.cardInfo.stock,
+            categoria: this.cardInfo.categoria,
+            Segunda_mano: this.cardInfo.segunda_mano,
+            img: this.cardInfo.img
+   
+          };
+          this.carritoService.addNewProductToCart(carritoItem);
+        }
+      }
+     
+     
+   
     }
 
-  }
 
   
   

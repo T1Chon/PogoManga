@@ -8,12 +8,12 @@ import { ProductResults, ProductResults_detail } from '../interfaces/card';
 })
 export class ServicesService {
 
-  //private urlLocal = "http://172.17.131.10:3000/api/productos";
-  //private urlProducto_figura = "http://172.17.131.10:3000/api/producto_figura";
-  private urlProducto_figura = "http://localhost:3000/api/producto_figura";
-  //private url_Producto_manga = "http://172.17.131.10:3000/api/producto_manga";
-  private url_Producto_manga = "http://localhost:3000/api/producto_manga";
-  private url_API = "http://localhost:3000/api/productos";
+  private urlLocal = "http://172.17.131.10:3000/api/productos";
+  private urlProducto_figura = "http://172.17.131.10:3000/api/producto_figura";
+  //private urlProducto_figura = "http://localhost:3000/api/producto_figura";
+  private url_Producto_manga = "http://172.17.131.10:3000/api/producto_manga";
+  //private url_Producto_manga = "http://localhost:3000/api/producto_manga";
+  //private url_API = "http://localhost:3000/api/productos";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,15 +28,15 @@ export class ServicesService {
     if (this.allProducts) {
       return of(this.allProducts);
     }
-    return this.http.get<ProductResults>(this.url_API);
+    return this.http.get<ProductResults>(this.urlLocal);
   }
 
   GetProductById(productId: number): Observable<ProductResults> {
-    return this.http.get<ProductResults>(`${this.url_API}/${productId}`);
+    return this.http.get<ProductResults>(`${this.urlLocal}/${productId}`);
   }
 
   searchProductsByName(nombre: string): Observable<ProductResults> {
-    return this.http.get<ProductResults>(`${this.url_API}/buscar/${nombre}`);
+    return this.http.get<ProductResults>(`${this.urlLocal}/buscar/${nombre}`);
   }
 
   GetProductsFigura():Observable<ProductResults> {
@@ -44,7 +44,7 @@ export class ServicesService {
   }
 
   GetProducts_detail(productId: number, tipo: number):Observable<ProductResults_detail> {
-    return this.http.get<ProductResults_detail>(`${this.url_API}/producto_detail/${productId}/${tipo}`);
+    return this.http.get<ProductResults_detail>(`${this.urlLocal}/producto_detail/${productId}/${tipo}`);
   }
 
   GetProductsManga():Observable<ProductResults> {

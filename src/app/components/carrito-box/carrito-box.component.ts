@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { productCart } from '../../interfaces/carritoCard';
 import { CarritoServiceService } from '../../service/carrito-service.service';
@@ -43,9 +43,18 @@ export class CarritoBoxComponent implements OnInit {
     };
   }
 
-  ngOnDestroy() {
-    console.log('onDestroyoComponent');
-    this.service.saveCart(this.products);
+
+  @HostListener('window:beforeunload', ['$event'])
+  doSomethingOnUnload(event: Event) {
+    console.log('hola jeje')
+    this.service.saveCart(this.products).subscribe(
+      response => {
+        console.log('Response from backend:', response);
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
     this.subscriptions.forEach(e => e.unsubscribe());
   }
 

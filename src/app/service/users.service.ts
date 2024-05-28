@@ -8,8 +8,8 @@ import { usersResults, user } from '../interfaces/users';
 })
 export class UsersService {
 
-  // private urlLocal = "http://172.17.131.10:3000/api/usuarios";
-  private urlLocal = "http://localhost:3000/api/usuarios";
+  private urlLocal = "http://172.17.131.10:3000/api/usuarios";
+  //private urlLocal = "http://localhost:3000/api/usuarios";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

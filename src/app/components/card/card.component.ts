@@ -23,6 +23,9 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.service.GetProducts();
+    this.products$.subscribe(data => {
+      console.log(typeof(data.productos[0].precio))
+    })
   }
 
 };
