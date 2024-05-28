@@ -45,6 +45,7 @@ export class CarritoServiceService {
   }
 
   addNewProductToCart(product: productCart): void {
+    console.log("hola");
     this.cartProducts.push(product);
     this.products$.next(this.cartProducts);
     this.numberProduct$.next(this.cartProducts.length);

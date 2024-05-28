@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FigurasComponent } from './components/figuras/figuras.component';
 import { MangasComponent } from './components/mangas/mangas.component';
 import { ResultSearchComponent } from './components/result-search/result-search.component';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
 
 
 export const  routes: Routes = [
@@ -41,6 +42,9 @@ export const  routes: Routes = [
     },
     {
         path: 'result-search', component: ResultSearchComponent
-    }
+    },
+    {
+        path: 'cart', component: CartPageComponent
+    },
 
 ];
