@@ -16,14 +16,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  user: any = {};
-  direcciones: any[] = [];
-  nuevaDireccion: any = {};
-  userId: number = 0;
-  agregandoDireccion: boolean = false;
-  nuevaDireccionProvincias: string[] = [];
-  codigoPostalErrorMessage: string = '';
-
 
   paisesEuropa: string[] = [
     'Albania',
@@ -472,6 +464,17 @@ export class ProfileComponent implements OnInit {
     ],
   };
 
+  user: any = {};
+  direcciones: any[] = [];
+  nuevaDireccion: any = {};
+  userId: number = 0;
+  agregandoDireccion: boolean = false;
+  nuevaDireccionProvincias: string[] = [];
+  codigoPostalErrorMessage: string = '';
+  agregadoExitosamente: boolean = false;
+  indiceDireccionAgregada: number | null = null;
+
+
   constructor(
     private addressService: AddressService,
     private usersService: UsersService,
@@ -516,7 +519,9 @@ export class ProfileComponent implements OnInit {
     this.addressService.getDirecciones(userId).subscribe({
       next: (data) => {
         this.user = { ...this.user, ...data.user };
-        this.direcciones = data.direcciones;
+
+        this.direcciones = data.direcciones.slice(0, 5);
+
         console.log('Datos obtenidos:', data);
       },
       error: (error: HttpErrorResponse) => {
@@ -573,6 +578,7 @@ export class ProfileComponent implements OnInit {
     this.nuevaDireccion = {};
   }
 
+
   confirmarNuevaDireccion(): void {
     // Validar el código postal antes de confirmar la nueva dirección
     if (!this.validarCodigoPostal(this.nuevaDireccion.codigo_postal)) {
@@ -592,6 +598,11 @@ export class ProfileComponent implements OnInit {
             this.nuevaDireccion = {};
             this.agregandoDireccion = false;
             this.direcciones.push(response);
+            this.agregadoExitosamente = true;
+            setTimeout(() => {
+              this.agregadoExitosamente = false;
+            }, 3000);
+            this.indiceDireccionAgregada = this.direcciones.length - 1;
           },
           error: (error: HttpErrorResponse) => {
             console.error('Error al agregar nueva dirección:', error.message);
