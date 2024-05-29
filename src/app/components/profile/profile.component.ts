@@ -484,23 +484,36 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       const userSession = sessionStorage.getItem('user');
+      console.log('Contenido de userSession:', userSession); // Depurar
       if (userSession) {
-        const userData = JSON.parse(userSession);
-        if (userData && userData.user) {
-          this.userId = userData.user.id_usuario;
-          this.getUserAndDirecciones(this.userId);
-          console.log('Usuario logueado:', this.user);
+        let userData;
+        try {
+          userData = JSON.parse(userSession);
+        } catch (e) {
+          console.error('Error al parsear userSession:', e);
+        }
+        console.log('Contenido de userData:', userData); // Depurar
+        if (userData && userData.user && Array.isArray(userData.user)) {
+          const user = userData.user[0]; // Acceder al primer objeto en el arreglo
+          console.log('Contenido de userData.user:', user); // Depurar
+          if (user && user.id_usuario) {
+            this.userId = user.id_usuario;
+            this.getUserAndDirecciones(this.userId);
+            console.log('Usuario logueado:', user);
+          } else {
+            console.log('id_usuario no definido');
+          }
         } else {
           console.log('No hay usuario logueado');
         }
       } else {
         console.log('No hay usuario logueado');
       }
-
+  
       // Recuperar valores seleccionados de los desplegables
       const selectedPais = localStorage.getItem('selectedPais');
       const selectedProvincia = localStorage.getItem('selectedProvincia');
-
+  
       // Establecer los valores seleccionados si existen
       if (selectedPais) {
         this.direcciones.forEach((item) => {
@@ -514,6 +527,9 @@ export class ProfileComponent implements OnInit {
       }
     }
   }
+  
+  
+  
 
   getUserAndDirecciones(userId: number): void {
     this.addressService.getDirecciones(userId).subscribe({

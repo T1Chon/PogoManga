@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AddressService {
   // private apiUrl = 'http://172.17.131.10:3000/api/direcciones';
-  private apiUrl = 'http://localhost:3000/api/direcciones';
+  private apiUrl = 'http://172.17.131.10:3000/api/direcciones';
 
   constructor(private http: HttpClient) {}
 

@@ -34,7 +34,7 @@ export class LoginComponent {
 
   onLogin() {
     const { usuario, contrasena } = this.loginObj;
-    const url = `http://localhost:3000/api/auth/${usuario}/${contrasena}`;
+    const url = `http://172.17.131.10:3000/api/auth/${usuario}/${contrasena}`;
 
     this.http.get(url).subscribe((res: any) => {
       if (res.user) {

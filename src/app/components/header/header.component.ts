@@ -15,7 +15,7 @@ import { AuthserviceService } from '../../service/authservice.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  userInfo: any;
+  userInfo: any = {};
   isHidden = true;
   searchInput: string | undefined;
   private isBrowser: boolean;
@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     if (this.isBrowser) {
       this.authService.user$.subscribe(user => {
-        this.userInfo = user;
+        this.userInfo = user[0];
+        // console.log('user: ', this.userInfo[0]);
       });
     }
   }
