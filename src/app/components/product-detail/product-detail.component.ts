@@ -7,6 +7,8 @@ import { RouterLink } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { threadId } from 'worker_threads';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -14,7 +16,7 @@ import { threadId } from 'worker_threads';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   animations: [
     trigger('fadeInOut', [
       state('void', style({

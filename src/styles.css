@@ -21,3 +21,6 @@
     /* scrollbar-color: var(--thumbBG) var(--scrollbarBG); */
 }
 
+.hidden {
+    display: none;
+}

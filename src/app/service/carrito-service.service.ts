@@ -19,10 +19,12 @@ export class CarritoServiceService {
 
   private cartProducts: productCart[] = [];
   private priceProducts: productCart[] = [];
-  private products$: BehaviorSubject<productCart[]> = new BehaviorSubject<productCart[]>([])
+  private products$: BehaviorSubject<productCart[]> = new BehaviorSubject<productCart[]>(this.cartProducts)
   private numberProduct$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
   private totalPrice$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
-  private productoPrecio!: productCart[];
+  public date = new Date()
+
+  public cestaisnotnull: boolean = false;
 
 
   get products() {
@@ -41,17 +43,20 @@ export class CarritoServiceService {
     return this.http.post<productCart[]>(this.urlLocal, cart);
   }
 
+  updateCart(cart: productCart[]) {
+    return this.http.put<productCart[]>(this.urlLocal, cart);
+  }
+
   private updateTotalPrecio() {
     this.cartProducts.forEach(data => {
       console.log(data.precio)
     })
     let total = this.cartProducts.reduce((sum, product) => sum + product.precio, 0);
-    total = parseFloat(total.toFixed(2));
+    //total = parseFloat(total.toFixed(2));
     this.totalPrice$.next(total);
   }
 
   private updateNumber() {
-
     const total = this.cartProducts.reduce((sum, product) => sum + product.cantidad, 0);
     this.numberProduct$.next(total);
   }
@@ -61,18 +66,6 @@ export class CarritoServiceService {
       if (this.cartProducts[i].id_producto === product.id_producto) {
         console.log('Encontrado');
         return i;
-      }
-    }
-    return -1;
-  }
-
-  private findProductByIndex(index: number) {
-    for (let i = 0; i < this.cartProducts.length; i++) {
-      if (i == index) {
-        if (this.cartProducts[i].cantidad > 1) {
-          return i;
-        }
-        return -1;
       }
     }
     return -1;
@@ -114,10 +107,20 @@ export class CarritoServiceService {
     this.updateTotalPrecio();
   }
 
-  // GetCestaById(id_usuario: number): Observable<CarritocardResults> {
-  //   return this.http.get<CarritocardResults>(`${this.urlLocal}/${id_usuario}`);
-  // }
-
+  GetCestaById(id_usuario: number): void {
+    this.http.get<productCart[]>(`${this.urlLocal}/${id_usuario}`).subscribe( data => {
+      if (data && data.length > 0) {
+        this.cartProducts = data;
+        this.products$.next(this.cartProducts);
+        this.updateNumber();
+        this.updateTotalPrecio();
+        this.cestaisnotnull = true;
+        console.log(data);
+      } else {
+       this.cestaisnotnull = false;
+      }
+    })
+  }
   // AddProductCarrito(id_usuario: number): Observable<CarritocardResults> {
   //   return this.http.get<CarritocardResults>(`${this.urlLocal}/${id_usuario}`);
   // }

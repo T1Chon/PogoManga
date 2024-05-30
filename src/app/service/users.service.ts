@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { usersResults, user } from '../interfaces/users';
 
 @Injectable({
@@ -18,7 +18,8 @@ export class UsersService {
 
 
   constructor(private http: HttpClient) { };
-  
+
+
   GetUsers():Observable<usersResults> {
     return this.http.get<usersResults>(this.urlLocal);
   }

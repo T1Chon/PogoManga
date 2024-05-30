@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { productCart } from '../../interfaces/carritoCard';
 import { CarritoServiceService } from '../../service/carrito-service.service';
@@ -19,7 +19,6 @@ export class CarritoBoxComponent implements OnInit {
   public products$!: Observable<productCart[]>
   public precioTotal$!: Observable<Number>;
   public subscriptions: Subscription[] = [];
-
 
   // public carrito$!: Observable<CarritocardResults>;
   constructor(private service: CarritoServiceService) { }
@@ -43,20 +42,9 @@ export class CarritoBoxComponent implements OnInit {
     };
   }
 
-
-  @HostListener('window:beforeunload', ['$event'])
-  doSomethingOnUnload(event: Event) {
-    console.log('hola jeje')
-    this.service.saveCart(this.products).subscribe(
-      response => {
-        console.log('Response from backend:', response);
-      },
-      error => {
-        console.error('Error:', error);
-      }
-    );
+  ngOnDestroy() {
     this.subscriptions.forEach(e => e.unsubscribe());
-  }
+  } 
 
   onClick(index: number):void {
     this.service.deleteProductOfCart(index);

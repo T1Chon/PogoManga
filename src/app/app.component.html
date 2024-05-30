@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-nav></app-nav>
-<router-outlet></router-outlet>
+<app-nav class="hidden md:block"></app-nav>
+<router-outlet (window:beforeunload)="closeApp()"></router-outlet>
 <app-footer class="mt-auto"></app-footer>
 

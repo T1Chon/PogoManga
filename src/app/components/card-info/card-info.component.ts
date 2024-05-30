@@ -21,6 +21,18 @@ export class CardInfoComponent {
 
   constructor(private carritoService: CarritoServiceService) {}
 
+  ngOnInit() {
+    let sessionFormat:any;  
+
+    const session = sessionStorage.getItem('user');
+    if(session != null) {
+      sessionFormat = JSON.parse(session);  
+      this.carritoService.GetCestaById(sessionFormat.user[0].id_usuario);
+
+    }
+
+  }
+
     addToCart() {
       const session = sessionStorage.getItem('user');
       if (session) {
@@ -31,7 +43,7 @@ export class CardInfoComponent {
             id_cesta: '',
             id_usuario: sessionFormat.user[0].id_usuario,
             cantidad: 1,
-            fecha_cesta: new Date(), 
+            fecha_cesta: this.carritoService.date, 
             nombre: this.cardInfo.nombre,
             precio: parseFloat(this.cardInfo.precio),
             tamano: this.cardInfo.tamano,
@@ -39,17 +51,9 @@ export class CardInfoComponent {
             categoria: this.cardInfo.categoria,
             Segunda_mano: this.cardInfo.segunda_mano,
             img: this.cardInfo.img
-   
           };
           this.carritoService.addNewProductToCart(carritoItem);
         }
-      }
-     
-     
-   
+      }  
     }
-
-
-  
-  
 }
