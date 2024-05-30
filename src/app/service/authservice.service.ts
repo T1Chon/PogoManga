@@ -16,6 +16,7 @@ export class AuthserviceService {
       const session = sessionStorage.getItem('user');
       if (session) {
         this.userSubject.next(JSON.parse(session).user);
+        // console.log('session: ', session);
       }
     }
   }
