@@ -5,7 +5,7 @@
     class="bg-white bg-opacity-70 h-10 flex-1 bg-no-repeat bg-right rounded-md"
         style="background-image: url('../../../assets/images/lupa-search.png')" (keyup.enter)="searchProduct(inputBuscador.value)">
 
-    @if(userInfo){
+    @if(userInfo.usuario){
     <div class="login-container">
         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
             class="text-white bg-black font-medium rounded-lg text-sm px-2.5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

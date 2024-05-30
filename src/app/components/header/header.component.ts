@@ -31,8 +31,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     if (this.isBrowser) {
       this.authService.user$.subscribe(user => {
-        this.userInfo = user[0];
-        // console.log('user: ', this.userInfo[0]);
+        if (user && user.length > 0) {
+          this.userInfo = user[0];
+        } else {
+          this.userInfo = {}; // o algún valor por defecto
+        }
       });
     }
   }
@@ -52,5 +55,4 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/result-search'], { queryParams: { parametro1: this.searchInput } });
     }
   }
-
 }
