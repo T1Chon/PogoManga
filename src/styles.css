@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    body,
+    html {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        height: 100%;
+    }
+}
+
+* {
+    --scrollbarBG: transparent;
+    --thumbBG: #dc2626;
+
+    scrollbar-width: none;
+    /* scrollbar-color: var(--thumbBG) var(--scrollbarBG); */
+}
+
+.hidden {
+    display: none;
+}

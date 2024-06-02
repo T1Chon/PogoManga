@@ -1,0 +1,57 @@
+<main class=" ">
+  <div class="mx-auto border border-gray-700 w-1/3 p-16 rounded-2xl my-14 shadow">
+    <h2 class="mb-5 text-center">Registro</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="flex flex-col gap-y-4">
+      <label for="user" class="flex justify-center items-start flex-col ">
+        <h2 class="text-sm">Usuario</h2>
+        <input type="text" id="user" formControlName="usuario" maxlength="20" required class="w-full">
+        @if (registerForm.controls['usuario'].invalid && registerForm.controls['usuario'].touched) {
+          <small class="text-red-500">Usuario es requerido y debe tener máximo 20 caracteres.</small>
+        }
+      </label>
+      <label for="name" class="flex justify-center items-start flex-col  ">
+        <h2 class="text-sm">Nombre</h2>
+        <input type="text" id="name" formControlName="nombre" maxlength="20" required class="w-full">
+        @if (registerForm.controls['nombre'].invalid && registerForm.controls['nombre'].touched) {
+          <small class="text-red-500">Nombre es requerido y debe tener máximo 20 caracteres.</small>
+        }
+
+      </label>
+      <label for="firstname" class="flex justify-center items-start flex-col ">
+        <h2 class="text-sm">Primer Apellido</h2>
+        <input type="text" id="firstname" formControlName="apellido1" maxlength="20" required class="w-full">
+        @if (registerForm.controls['apellido1'].invalid && registerForm.controls['apellido1'].touched) {
+          <small class="text-red-500">Primer Apellido es requerido y debe tener máximo 20 caracteres.</small>
+        }
+
+      </label>
+      <label for="secondname" class="flex justify-center items-start flex-col">
+        <h2 class="text-sm">Segundo Apellido</h2>
+        <input type="text" id="secondname" formControlName="apellido2" maxlength="20" required class="w-full">
+        @if (registerForm.controls['apellido2'].invalid && registerForm.controls['apellido2'].touched) {
+          <small class="text-red-500">Segundo Apellido es requerido y debe tener máximo 20 caracteres.</small>
+        }
+
+      </label>
+      <label for="correo" class="flex justify-center items-start flex-col">
+        <h2 class="text-sm">Correo</h2>
+        <input type="email" id="correo" formControlName="correo" maxlength="50" required class="w-full">
+        @if (registerForm.controls['correo'].invalid && registerForm.controls['correo'].touched) {
+          <small class="text-red-500">Correo es requerido y debe tener un formato válido.</small>
+        }
+
+      </label>
+      <label for="password" class="flex justify-center items-start flex-col ">
+        <h2 class="text-sm">Contraseña</h2>
+        <input type="password" id="password" formControlName="contrasena" minlength="8" maxlength="16" required class="w-full">
+        @if (registerForm.controls['contrasena'].invalid && registerForm.controls['contrasena'].touched) {
+          <small class="text-red-500">Contraseña es requerida, debe tener entre 8 y 16 caracteres, incluir al menos una mayúscula, una minúscula y un número.</small>
+        }
+      </label>
+      @if (errorMessage) {
+        <p class="text-red-500 text-center">{{errorMessage}}</p>
+      }
+      <button type="submit" class="transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink">Register</button>
+    </form>
+  </div>
+</main>
