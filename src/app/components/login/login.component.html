@@ -1,0 +1,27 @@
+<div class="lg:mx-auto border border-gray-700 w-5/5 lg:w-2/3 xl:w-1/3 p-16 rounded-2xl mx-10  my-14 shadow">
+    <h2 class="mb-5 text-center">Iniciar sesión</h2>
+    
+    <form action="" method="post" class="flex flex-col gap-y-4">
+        <label for="user" class="flex justify-center items-start flex-col">
+            <h2 class="text-sm">Usuario</h2>
+            <input class="w-full" type="text" name="User" id="user" cols="15" rows="1" maxlength="15" [(ngModel)]="loginObj.usuario"
+                required >
+        </label>
+
+        <label for="password" class="flex justify-center items-start flex-col">
+            <h2 class="text-sm">Contraseña</h2>
+            <input class="w-full" type="password" name="Contraseña" id="psw" cols="15" rows="1" maxlength="15" placeholder=""
+                 required [(ngModel)]="loginObj.contrasena"> 
+        </label>
+        <label for="button" class="flex justify-center pt-4">
+            <button
+                class="w-full transition ease duration-300 text-white shadow-lg rounded-2xl p-2 bg-gradient-to-r from-orange-500 to-red-600 hover:from-custom-pink hover:to-custom-pink"
+                type="submit" (click)="onLogin()">Inicia sesión</button>
+                @if (loginAuth() == true) {    
+                }
+        </label>
+        <label>
+            <p class="mt-5 text-center">No tienes cuenta todavia? <span class="font-semibold cursor-pointer" [routerLink]="['/register']">Registrate</span></p>
+        </label>
+    </form>
+</div>

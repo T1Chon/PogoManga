@@ -1,0 +1,96 @@
+<div>
+    <div class="flex gap-1 items-center pl-[13%] text-xs mt-6 mb-4">
+        <button [routerLink]="['/main']">Inicio</button>
+        <p class="m-0">></p>
+        <button [routerLink]="['/figuras']">Figuras</button>
+        <p class="m-0">></p>
+        <button> {{ products?.categoria }}</button>
+        <p class="m-0">></p>
+        <p class="m-0">{{ products_detail?.nombre }} </p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-[8%]">
+        <div [ngClass]="{'hidden': products?.tipo === 0}" class="flex flex-col gap-6 min-h-[5%] w-[5%]">
+            @if (products?.tipo == 1) {
+            @for (item of productImages; track item; let index = $index) {
+            <img class="cursor-crosshair border-solid border-1 max-w-[100%] max-h-[100%] border-black shadow-lg rounded-xl"
+                src="{{item}}.jpg" (click)="changeImg(index)">
+            <!-- <img class="cursor-crosshair border-solid border-1 max-w-[100%] max-h-[16%] border-black shadow-lg rounded-xl"
+            src="https://imgs.search.brave.com/Ua5JNGfSbblzMHRgX2LdXqZL5bUputIPQ-76aKY4AJc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFVa2RKZGZjdEwu/anBn" (click)="changeImg(index)"> -->
+            }
+            }
+        </div>
+        <div class="w-[60%] lg:w-[30%] h-96 flex items-center justify-center align-middle">
+            <img #mainImage class="h-[100%] w-[100%] object-contain rounded-xl" src="{{ currentImg }}">
+        </div>
+
+        <!-- <img #mainImage class="h-[30%] w-[30%] rounded-xl" src="https://imgs.search.brave.com/Ua5JNGfSbblzMHRgX2LdXqZL5bUputIPQ-76aKY4AJc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NzFVa2RKZGZjdEwu/anBn"> -->
+        <div class="w-[80%] lg:w-[23%] mb-6">
+            <h1>{{ products_detail?.nombre }}</h1>
+            <p class="font-bold">Características</p>
+            <hr>
+            <div class="flex justify-between">
+                <p class="font-bold">Tamaño </p>
+                <p>{{ products?.tamano }}cm</p>
+            </div>
+            @if(products?.segunda_mano == 1) {
+            <div class="flex justify-between">
+                <p class="font-bold">Estado </p>
+                <p>Segunda Mano</p>
+            </div>
+            } @else {
+            <div class="flex justify-between">
+                <p class="font-bold">Estado </p>
+                <p>Nuevo</p>
+            </div>
+            }
+
+            @if(products?.tipo == 1) {
+            <div class="flex justify-between">
+                <p class="font-bold">Licencia</p>
+                <p>{{ products_detail?.licencia }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Origen </p>
+                <p>{{ products_detail?.origen }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Fabricante </p>
+                <p>{{ products_detail?.fabricante }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Material </p>
+                <p>{{ products_detail?.material }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Presentación </p>
+                {{ products_detail?.presentacion }}
+            </div>
+            }
+
+            @if(products?.tipo == 0) {
+            <div class="flex justify-between">
+                <p class="font-bold">Autores</p>
+                <p>{{ products_detail?.autores }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Editorial </p>
+                <p>{{ products_detail?.editoriales }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Num. Páginas </p>
+                <p>{{ products_detail?.num_paginas }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">Color </p>
+                <p>{{ products_detail?.color }}</p>
+            </div>
+            <div class="flex justify-between">
+                <p class="font-bold">ISBN </p>
+                {{ products_detail?.isbn }}
+            </div>
+            }
+            <h1>{{ products?.precio }}€</h1>
+
+        </div>
+    </div>
+</div>
