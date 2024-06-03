@@ -1,0 +1,225 @@
+<div class="flex py-10 justify-center px-20">
+
+  <div class="flex flex-col p-4 h-fit shadow-lg ">
+    <h3>INFORMACION PERSONAL</h3>
+    <label for="usuario">Usuario:</label>
+    <input type="text" name="usuario" id="usuario" [(ngModel)]="user.usuario" class="border rounded p-2 mb-2">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" [(ngModel)]="user!.nombre" class="border rounded p-2 mb-2">
+    <label for="apellido1">Apellido:</label>
+    <input type="text" name="apellido1" id="apellido1" [(ngModel)]="user!.apellido1" class="border rounded p-2 mb-2">
+    <label for="apellido2">Apellido:</label>
+    <input type="text" name="apellido2" id="apellido2" [(ngModel)]="user!.apellido2" class="border rounded p-2 mb-2">
+    <label for="correo">Correo:</label>
+    <input type="text" name="correo" id="correo" [(ngModel)]="user!.correo" class="border rounded p-2 mb-2">
+    <button class="p-2 bg-teal-500 text-white rounded-lg mt-2 w-full" (click)="updateUser()">Actualizar Información Personal</button>
+  </div>
+
+  <div class="flex flex-col w-3/4 pl-5">
+    @if (direcciones && direcciones.length > 0) {
+      <div class="flex flex-wrap justify-center">
+        @for (item of direcciones.slice(0, 5); track $index) {
+          <div class="shadow-lg p-4 mb-4 border border-gray-300 rounded-md w-1/3">
+            <div class="grid grid-cols-2 gap-2 mb-1">
+              <div>
+                <label for="pais">País:</label>
+                <select name="pais" id="pais" [(ngModel)]="item.pais" class="border rounded p-2 w-full" (change)="onPaisChange(item)">
+                  @for (pais of paisesEuropa; track $index) {
+                    <option id="pais" value={{pais}}>{{ pais }}</option>
+                  }
+                </select>
+              </div>
+
+              <div>
+                <label for="provincia">Provincia:</label>
+                <select name="provincia" id="provincia" [(ngModel)]="item.provincia" class="border rounded p-2 w-full">
+                  @for (provincia of item.provincias; track $index) {
+                    <option id="provincia" value={{provincia}}>{{ provincia }}</option>
+                  }
+                </select>
+              </div>
+
+              <div>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" name="ciudad" id="ciudad" [(ngModel)]="item.ciudad" class="border rounded p-2 w-full">
+              </div>
+
+              <div>
+                <label for="codigo_postal">Código Postal:</label>
+                <input type="number" name="codigo_postal" id="codigo_postal" [(ngModel)]="item.codigo_postal" pattern="\d{5}" maxlength="5" title="El código postal debe ser un número de 5 dígitos" class="border rounded p-2 w-full">
+                @if (codigoPostalErrorMessage && item.codigo_postal !== undefined && !validarCodigoPostal(item.codigo_postal.toString())) {
+                  <div class="error-message bg-red-400 border border-red-700 p-1 mt-1 rounded-md">{{ codigoPostalErrorMessage }}</div>
+                }
+              </div>
+
+              <div>
+                <label for="calle">Calle:</label>
+                <input type="text" name="calle" id="calle" [(ngModel)]="item.calle" class="border rounded p-2 w-full">
+              </div>
+
+              <div>
+                <label for="piso">Piso:</label>
+                <input type="text" name="piso" id="piso" [(ngModel)]="item.piso" class="border rounded p-2 w-full">
+              </div>
+
+              <div>
+                <label for="puerta">Puerta:</label>
+                <input type="text" name="puerta" id="puerta" [(ngModel)]="item.puerta" class="border rounded p-2 w-full">
+              </div>
+
+              <div class="col-span-2 flex justify-around">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 cursor-pointer" (click)="updateDireccion(item.id_direccion, item)">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 cursor-pointer" (click)="eliminarDireccion(item.id_direccion)">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+
+              </div>
+
+
+            </div>
+
+            @if (agregadoExitosamente && $index === indiceDireccionAgregada) {
+              <div class="bg-green-500 text-center p-1 rounded-md mt-1 text-white">Se ha añadido correctamente</div>
+            }
+
+
+          </div>
+
+        }
+
+        <div class="shadow-lg p-4 mb-4 border border-gray-300 rounded-md w-1/3 items-center justify-center flex">
+
+          @if (!agregandoDireccion) {
+
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-56 h-56 cursor-pointer" (click)="agregarDireccion()">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+
+          }
+          @if (agregandoDireccion) {
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label for="pais">País:</label>
+                <select name="pais" id="pais" [(ngModel)]="nuevaDireccion.pais" class="border rounded p-2 w-full" (change)="onPaisChange(nuevaDireccion)">
+                  @for (pais of paisesEuropa; track $index) {
+                    <option id="pais" value={{pais}}>{{ pais }}</option>
+                  }
+                </select>
+              </div>
+
+              <div>
+                <label for="provincia">Provincia:</label>
+                <select name="provincia" id="provincia" [(ngModel)]="nuevaDireccion.provincia" class="border rounded p-2 w-full">
+                  @for (provincia of nuevaDireccion.provincias; track $index) {
+                    <option id="provincia" value={{provincia}}>{{ provincia }}</option>
+                  }
+                </select>
+              </div>
+
+              <div>
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" name="ciudad" id="nuevaDireccionCiudad" [(ngModel)]="nuevaDireccion.ciudad" class="border rounded p-2 w-full">
+              </div>
+
+              <div>
+                <label for="codigo_postal">Código Postal:</label>
+                <input type="text" name="codigo_postal" id="nuevaDireccionCodigo_postal" [(ngModel)]="nuevaDireccion.codigo_postal" pattern="\d{5}" maxlength="5" title="El código postal debe ser un número de 5 dígitos" class="border rounded p-2 w-full">
+                @if (codigoPostalErrorMessage && nuevaDireccion.codigo_postal !== undefined && !validarCodigoPostal(nuevaDireccion.codigo_postal.toString())) {
+                  <div class="error-message bg-red-400 border border-red-700 p-1 mt-1 rounded-md">{{ codigoPostalErrorMessage }}</div>
+                }
+              </div>
+
+              <div>
+                <label for="calle">Calle:</label>
+                <input type="text" name="calle" id="nuevaDireccionCalle" [(ngModel)]="nuevaDireccion.calle" class="border rounded p-2 w-full">
+              </div>
+
+              <div>
+                <label for="piso">Piso:</label>
+                <input type="text" name="piso" id="nuevaDireccionPiso" [(ngModel)]="nuevaDireccion.piso" class="border rounded p-2 w-full">
+              </div>
+
+              <div>
+                <label for="puerta">Puerta:</label>
+                <input type="text" name="puerta" id="nuevaDireccionPuerta" [(ngModel)]="nuevaDireccion.puerta" class="border rounded p-2 w-full">
+              </div>
+
+              <div class="col-span-2 flex justify-between">
+                <button class="p-2 bg-teal-500 text-white rounded-lg mt-2 w-full mr-2" (click)="confirmarNuevaDireccion()">Guardar Dirección</button>
+                <button class="p-2 bg-red-500 text-white rounded-lg mt-2 w-full ml-2" (click)="cancelarAgregarDireccion()">Cancelar</button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    } @else {
+      <div class="shadow-lg p-4 mb-4 border border-gray-300 rounded-md w-1/2">
+        <h3 class="text-center">Todavía no tienes ninguna dirección</h3>
+
+        @if (!agregandoDireccion) {
+          <button class="p-2 bg-teal-500 text-white rounded-lg mt-2 w-full" (click)="agregarDireccion()">Agregar Nueva Dirección</button>
+        }
+        @if (agregandoDireccion) {
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div>
+              <label for="pais">País:</label>
+              <select name="pais" id="pais" [(ngModel)]="nuevaDireccion.pais" class="border rounded p-2 w-full" (change)="onPaisChange(nuevaDireccion)">
+                @for (pais of paisesEuropa; track $index) {
+                  <option id="pais" value={{pais}}>{{ pais }}</option>
+                }
+              </select>
+            </div>
+
+            <div>
+              <label for="provincia">Provincia:</label>
+              <select name="provincia" id="provincia" [(ngModel)]="nuevaDireccion.provincia" class="border rounded p-2 w-full">
+                @for (provincia of nuevaDireccion.provincias; track $index) {
+                  <option id="provincia" value={{provincia}}>{{ provincia }}</option>
+                }
+              </select>
+            </div>
+
+            <div>
+              <label for="ciudad">Ciudad:</label>
+              <input type="text" name="ciudad" id="nuevaDireccionCiudad" [(ngModel)]="nuevaDireccion.ciudad" class="border rounded p-2 w-full">
+            </div>
+
+            <div>
+              <label for="codigo_postal">Código Postal:</label>
+              <input type="text" name="codigo_postal" id="nuevaDireccionCodigo_postal" [(ngModel)]="nuevaDireccion.codigo_postal" pattern="\d{5}" maxlength="5" title="El código postal debe ser un número de 5 dígitos" class="border rounded p-2 w-full">
+              @if (codigoPostalErrorMessage && nuevaDireccion.codigo_postal !== undefined && !validarCodigoPostal(nuevaDireccion.codigo_postal.toString())) {
+                <div class="error-message bg-red-400 border border-red-700 p-1 mt-1 rounded-md">{{ codigoPostalErrorMessage }}</div>
+              }
+            </div>
+
+            <div>
+              <label for="calle">Calle:</label>
+              <input type="text" name="calle" id="nuevaDireccionCalle" [(ngModel)]="nuevaDireccion.calle" class="border rounded p-2 w-full">
+            </div>
+
+            <div>
+              <label for="piso">Piso:</label>
+              <input type="text" name="piso" id="nuevaDireccionPiso" [(ngModel)]="nuevaDireccion.piso" class="border rounded p-2 w-full">
+            </div>
+
+            <div>
+              <label for="puerta">Puerta:</label>
+              <input type="text" name="puerta" id="nuevaDireccionPuerta" [(ngModel)]="nuevaDireccion.puerta" class="border rounded p-2 w-full">
+            </div>
+
+            <div class="col-span-2 flex justify-between">
+              <button class="p-2 bg-teal-500 text-white rounded-lg mt-2 w-full mr-2" (click)="confirmarNuevaDireccion()">Guardar Dirección</button>
+              <button class="p-2 bg-red-500 text-white rounded-lg mt-2 w-full ml-2" (click)="cancelarAgregarDireccion()">Cancelar</button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+
+</div>
